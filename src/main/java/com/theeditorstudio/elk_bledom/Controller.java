@@ -24,7 +24,7 @@ public class Controller {
         if(brightness < 0){
             throw new BrightnessViolationException("Brightness can not be lower than 0%!");
         }
-        return ByteUtil.getCommandByte((byte) 0x01, (byte) brightness,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_BRIGHTNESS.modeByte, (byte) brightness,
                 (byte) 0x00, (byte) 0x00, (byte) 0x00);
     }
 
@@ -41,7 +41,7 @@ public class Controller {
         if(speed < 0){
             throw new SpeedViolationException("Effect speed can not exceed lower than 0%!");
         }
-        return ByteUtil.getCommandByte((byte) 0x02, (byte) speed,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_SPEED.modeByte, (byte) speed,
                 (byte) 0x00, (byte) 0x00, (byte) 0x00);
     }
 
@@ -51,7 +51,7 @@ public class Controller {
      * @return bytes
      */
     public static byte[] setModeGrayscale(){
-        return ByteUtil.getCommandByte((byte) 0x03, (byte) 0x00, (byte) 0x01,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_EFFECT.modeByte, (byte) 0x00, (byte) 0x01,
                 (byte) 0x00, (byte) 0x00);
     }
 
@@ -61,7 +61,7 @@ public class Controller {
      * @return bytes
      */
     public static byte[] setModeTemperature(ColorTemperatureEnum temperatureEnum){
-        return ByteUtil.getCommandByte((byte) 0x03, temperatureEnum.colorTemperatureByte, (byte) 0x02,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_EFFECT.modeByte, temperatureEnum.colorTemperatureByte, (byte) 0x02,
                 (byte) 0x00, (byte) 0x00);
     }
 
@@ -71,7 +71,7 @@ public class Controller {
      * @return bytes
      */
     public static byte[] setModeEffect(EffectEnum effectEnum){
-        return ByteUtil.getCommandByte((byte) 0x03, effectEnum.effectByte, (byte) 0x03,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_EFFECT.modeByte, effectEnum.effectByte, (byte) 0x03,
                 (byte) 0x00, (byte) 0x00);
     }
 
@@ -81,7 +81,7 @@ public class Controller {
      * @return bytes
      */
     public static byte[] setModeDynamicExternalMic(){
-        return ByteUtil.getCommandByte((byte) 0x03, (byte) 0x00, (byte) 0x04,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_EFFECT.modeByte, (byte) 0x00, (byte) 0x04,
                 (byte) 0x00, (byte) 0x00);
     }
 
@@ -91,7 +91,7 @@ public class Controller {
      * @return bytes
      */
     public static byte[] setPower(StateEnum stateEnum){
-        return ByteUtil.getCommandByte((byte) 0x04, stateEnum.stateByte,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_POWER.modeByte, stateEnum.stateByte,
                 (byte) 0x00, (byte) 0x00, (byte) 0x00);
     }
 
@@ -101,7 +101,7 @@ public class Controller {
      * @return bytes
      */
     public static byte[] setColorForGrayScaleMode(GrayscaleEnum grayscaleEnum){
-        return ByteUtil.getCommandByte((byte) 0x05, (byte) 0x01, grayscaleEnum.grayscaleByte,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_RGB.modeByte, (byte) 0x01, grayscaleEnum.grayscaleByte,
                 (byte) 0x00, (byte) 0x00);
     }
 
@@ -111,7 +111,7 @@ public class Controller {
      * @return bytes
      */
     public static byte[] setColorForTemperatureMode(ColorTemperatureEnum temperatureEnum){
-        return ByteUtil.getCommandByte((byte) 0x05, (byte) 0x02, temperatureEnum.colorTemperatureByte,
+        return ByteUtil.getCommandByte(ModeEnum.MODE_RGB.modeByte, (byte) 0x02, temperatureEnum.colorTemperatureByte,
                 (byte) 0x00, (byte) 0x00);
     }
 
@@ -133,7 +133,7 @@ public class Controller {
         if(b > 255 || b < 0){
             throw new BrightnessViolationException("Blue brightness cannot exceed more than 255!");
         }
-        return ByteUtil.getCommandByte((byte) 0x05, (byte) 0x03, (byte) r, (byte) g, (byte) b);
+        return ByteUtil.getCommandByte(ModeEnum.MODE_RGB.modeByte, (byte) 0x03, (byte) r, (byte) g, (byte) b);
     }
 
     /**
